@@ -1,0 +1,48 @@
+@*  *@
+
+@using Microsoft.AspNetCore.Mvc.Rendering
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+
+@model IEnumerable<Biodigestor.Models.Cliente>
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Clientes - Index";
+}
+
+<h1>Lista de Clientes</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Crear Nuevo Cliente</a>
+</p>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Apellido)
+            </th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Apellido)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.IdCliente" class="btn btn-secondary btn-sm">Editar</a>
+                    <a asp-action="Details" asp-route-id="@item.IdCliente" class="btn btn-info btn-sm">Detalles</a>
+                    <a asp-action="Delete" asp-route-id="@item.IdCliente" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de que quieres eliminar este cliente?');">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
